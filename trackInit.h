@@ -6,7 +6,8 @@
 #include <cv.h>
 
 void help();  //the guider of initialization
-int genTrack(VideoCapture & cap); //to generate the track
+int genTrack (cv::VideoCapture&); //to generate the track
+
 
 
 
