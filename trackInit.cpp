@@ -5,14 +5,14 @@
 using namespace std;
 using namespace cv;
 
-vector<Point> borderPoint;
+vector<Point> borderPoint; //border selected by user
+Mat perspectiveMatrix;  //for changing perspective 
 
 
 
 void help()
 {
-    cout << "\tESC - quit the program\n"
-         "\ts - stop the tracking\n"
+    cout << "\ts - quit the program\n"
          "\tb - switch to/from backprojection view\n"
          "\tp - pause video\n"
          "\tk - make map\n"
@@ -25,13 +25,23 @@ int genTrack(VideoCapture& cap){
 
     Mat orgMap;
     cap >> orgMap;
-    Mat finalMap = changePerspective(orgMap);
+    Mat mapProcessed = changePerspective(orgMap);
+    Mat mapBinarized = Binarize(mapProcessed);
+    imshow("mapBinarized",mapBinarized);
+    cout<<"Press any key to continue"<<endl;
+    waitKey(0);
+    //destroyWindow("mapBinarized");
 
     for(;;)
 	{
 		Mat org;
 	    cap >> org;
-		imshow("orginal video",org);
+		//imshow("orginal video",org);
+        Mat mapProcessed;
+        warpPerspective(org,mapProcessed,perspectiveMatrix,org.size(),INTER_LINEAR, BORDER_CONSTANT);
+        imshow("mapProcessed",mapProcessed);
+
+        
 
 		if(waitKey(1)=='s') break;
 	}
@@ -64,7 +74,7 @@ Mat changePerspective(Mat org){
     dstPoints[3] = Point(0,height);
 
 
-    Mat perspectiveMatrix = getPerspectiveTransform(srcPoints,dstPoints);
+    perspectiveMatrix = getPerspectiveTransform(srcPoints,dstPoints);
     Mat finalTrack = org.clone();
     warpPerspective(org,finalTrack,perspectiveMatrix,finalTrack.size(),INTER_LINEAR, BORDER_CONSTANT);
 
@@ -83,8 +93,14 @@ void onMouse(int event, int x, int y, int flags, void* param){
 
         if(borderPoint.size()>=4){
             cout<<"Selecting border points finished."<<endl;
-            cout<<"Please press any key to continue after finishing selecting border points.\n"<<endl;
-            destroyWindow("changePerspective");
+            destroyWindow("changePerspective"); //it will expire waitKey(0)
         }
     }
+}
+
+
+Mat Binarize(Mat src){
+    Mat dst;
+    threshold(src,dst,150, 255, THRESH_BINARY_INV);
+    return dst;
 }

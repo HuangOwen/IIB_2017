@@ -10,6 +10,7 @@ void help();  //the guider of initialization
 int genTrack (cv::VideoCapture&); //to generate the track
 cv::Mat changePerspective(cv::Mat);
 void onMouse(int event, int x, int y, int flags, void* param); 
+cv::Mat Binarize(cv::Mat);
 
 
 

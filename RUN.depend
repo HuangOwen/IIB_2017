@@ -386,8 +386,13 @@
 	"opencv2/core/core_c.h"
 	"opencv2/core/core.hpp"
 
-1492152609 c:\users\joe\myproject\iib_2017\trackinit.h
+1492187740 c:\users\joe\myproject\iib_2017\trackinit.h
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
+
+1492186739 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
+	<iostream>
+	<cmath>
+	"trackInit.h"
 
