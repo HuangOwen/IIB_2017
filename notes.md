@@ -5,6 +5,6 @@
 3. 
 
 # Questions
-1. What's the difference between `IplImage` and `Mat`?
-2. How to convert a `Mat` to `OTSU` ?
+1. What's the difference between `IplImage` and `Mat`? *Answer:* `Mat` is new in openCV 2.4 and is recommended.
+2. How to convert a `Mat` to `OTSU` ? *Answer:* `src.converTo` and `cvtColor`
 3. 

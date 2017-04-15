@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1492013972 source:c:\users\joe\myproject\iib_2017\main.cpp
+1492223877 source:c:\users\joe\myproject\iib_2017\main.cpp
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
@@ -386,12 +386,12 @@
 	"opencv2/core/core_c.h"
 	"opencv2/core/core.hpp"
 
-1492187740 c:\users\joe\myproject\iib_2017\trackinit.h
+1492226185 c:\users\joe\myproject\iib_2017\trackinit.h
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
 
-1492186739 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
+1492234822 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
 	<iostream>
 	<cmath>
 	"trackInit.h"

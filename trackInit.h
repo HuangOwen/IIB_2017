@@ -6,11 +6,14 @@
 #include <cv.h>
 
 
+
 void help();  //the guider of initialization
 int genTrack (cv::VideoCapture&); //to generate the track
 cv::Mat changePerspective(cv::Mat);
 void onMouse(int event, int x, int y, int flags, void* param); 
-cv::Mat Binarize(cv::Mat);
+cv::Mat binarize(cv::Mat);
+cv::Mat sharpen(cv::Mat);
+void drawHoughLines(cv::Mat&);
 
 
 

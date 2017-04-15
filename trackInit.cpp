@@ -5,9 +5,10 @@
 using namespace std;
 using namespace cv;
 
+
 vector<Point> borderPoint; //border selected by user
 Mat perspectiveMatrix;  //for changing perspective 
-
+vector<Vec4i> trackLines;  
 
 
 void help()
@@ -21,32 +22,37 @@ void help()
          "To initialize tracking, select the object with mouse\n";
 }
 
+
 int genTrack(VideoCapture& cap){
 
     Mat orgMap;
     cap >> orgMap;
+
+    //change perspective
     Mat mapProcessed = changePerspective(orgMap);
-    Mat mapBinarized = Binarize(mapProcessed);
+
+    //binarize the map
+    Mat mapBinarized = binarize(mapProcessed);
     imshow("mapBinarized",mapBinarized);
-    cout<<"Press any key to continue"<<endl;
+    cout<<"The binaried map is displayed. Press any key to continue"<<endl;
     waitKey(0);
-    //destroyWindow("mapBinarized");
 
-    for(;;)
-	{
-		Mat org;
-	    cap >> org;
-		//imshow("orginal video",org);
-        Mat mapProcessed;
-        warpPerspective(org,mapProcessed,perspectiveMatrix,org.size(),INTER_LINEAR, BORDER_CONSTANT);
-        imshow("mapProcessed",mapProcessed);
+    //sharpen the track
+    Mat mapSharpend = sharpen(mapBinarized);
+    imshow("mapSharpend",mapSharpend);
+    cout<<"The sharpened map is displayed. Press any key to continue"<<endl;
+    waitKey(0);
 
-        
+    //use Hough line transformation to detect the lines
+    HoughLinesP(mapSharpend,trackLines,0.5, CV_PI/90,50,50,50);
+    drawHoughLines(mapProcessed);
+    imshow("track lines",mapProcessed);
+    cout<<"The track lines are displayed. Press any key to continue"<<endl;
+    waitKey(0);
 
-		if(waitKey(1)=='s') break;
-	}
     return 0;
 }
+
 
 Mat changePerspective(Mat org){
     cout<<"\nPlease mark the border of the track."<<endl;
@@ -99,8 +105,34 @@ void onMouse(int event, int x, int y, int flags, void* param){
 }
 
 
-Mat Binarize(Mat src){
-    Mat dst;
-    threshold(src,dst,150, 255, THRESH_BINARY_INV);
+Mat binarize(Mat src){
+    Mat tmpdst(src.size().height,src.size().width,CV_8U);
+    Mat dst(src.size().height,src.size().width,CV_8U);
+
+    cvtColor(src, tmpdst, CV_BGR2GRAY);
+    threshold(tmpdst,dst,150, 255, THRESH_BINARY|THRESH_OTSU);
+
     return dst;
 }
+
+
+Mat sharpen(Mat src){
+    Mat tmpdst(src.size().height,src.size().width,CV_8U);
+    Mat dst(src.size().height,src.size().width,CV_8U);
+    threshold(src, tmpdst, 128, 255, THRESH_BINARY_INV);  //revert the color
+
+    Mat erodeStruct = getStructuringElement(MORPH_RECT,Size(7,7));
+    erode(tmpdst,dst,erodeStruct);
+    Canny(dst, dst, 50, 150, 3);  //detect the edges
+
+    return dst;
+}
+
+
+void drawHoughLines(Mat& cdst){
+    for( size_t i = 0; i < trackLines.size(); i++ ){
+        Vec4i l = trackLines[i];
+        line(cdst,Point(l[0], l[1]),Point(l[2],l[3]),Scalar(0,255,100),1,CV_AA);
+        }
+}
+
