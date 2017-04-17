@@ -2,6 +2,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <cv.h>
 #include "trackInit.h"
+#include "traceCar.h"
 
 using namespace cv;
 using namespace std;
@@ -24,9 +25,23 @@ int main()
 		//imshow("orginal video",org);
         Mat mapProcessed;
         warpPerspective(org,mapProcessed,perspectiveMatrix,org.size(),INTER_LINEAR, BORDER_CONSTANT);
-        imshow("mapProcessed",mapProcessed);
+        
+        Point frontPos,rearPos;
+        Mat mapHSV;
+		cvtColor(mapProcessed, mapHSV, CV_BGR2HSV);
+        bool carDetected = traceCar(mapHSV,frontPos,rearPos);
 
-		if(waitKey(1)=='s') break;
+        //draw the front point
+        if(carDetected){
+        	circle(mapProcessed, frontPos, 15, Scalar(0,255,0), 3, 8, 0 );
+        	circle(mapProcessed, rearPos, 15, Scalar(0,0,255), 3, 8, 0 );
+        }
+
+        imshow("mapProcessed",mapProcessed);
+        if(waitKey(1)=='s') break;
+
+
+		
 	}
 
 

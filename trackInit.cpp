@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <list>
+#include <queue>
 #include "trackInit.h"
 
 using namespace std;
@@ -7,9 +9,9 @@ using namespace cv;
 
 
 vector<Point> borderPoint; //border selected by user
-Mat perspectiveMatrix;  //for changing perspective 
-vector<Vec4i> trackLines;  
-
+Mat perspectiveMatrix;  //for changing perspective
+vector<Vec4i> trackLines;
+queue<Point,list<Point> > turningPos;
 
 void help()
 {
@@ -49,6 +51,8 @@ int genTrack(VideoCapture& cap){
     imshow("track lines",mapProcessed);
     cout<<"The track lines are displayed. Press any key to continue"<<endl;
     waitKey(0);
+
+
 
     return 0;
 }

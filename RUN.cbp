@@ -58,6 +58,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="traceCar.cpp" />
+		<Unit filename="traceCar.h" />
 		<Unit filename="trackInit.cpp" />
 		<Unit filename="trackInit.h" />
 		<Extensions>
