@@ -1,13 +1,17 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <cv.h>
+#include <list>
+#include <queue>
 #include "trackInit.h"
 #include "traceCar.h"
+#include "controlCar.h"
 
 using namespace cv;
 using namespace std;
 
 extern Mat perspectiveMatrix;
+extern queue<Point,list<Point> > turningPos;
 
 int main()
 {
@@ -35,6 +39,7 @@ int main()
         if(carDetected){
         	circle(mapProcessed, frontPos, 15, Scalar(0,255,0), 3, 8, 0 );
         	circle(mapProcessed, rearPos, 15, Scalar(0,0,255), 3, 8, 0 );
+        	go2Target(frontPos,rearPos,turningPos);
         }
 
         imshow("mapProcessed",mapProcessed);

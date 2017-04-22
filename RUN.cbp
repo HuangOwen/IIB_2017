@@ -57,6 +57,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="controlCar.cpp" />
+		<Unit filename="controlCar.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="traceCar.cpp" />
 		<Unit filename="traceCar.h" />

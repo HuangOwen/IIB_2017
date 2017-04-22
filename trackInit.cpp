@@ -52,6 +52,8 @@ int genTrack(VideoCapture& cap){
     cout<<"The track lines are displayed. Press any key to continue"<<endl;
     waitKey(0);
 
+    
+
 
 
     return 0;
