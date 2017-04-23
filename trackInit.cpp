@@ -11,14 +11,12 @@ using namespace cv;
 vector<Point> borderPoint; //border selected by user
 Mat perspectiveMatrix;  //for changing perspective
 vector<Vec4i> trackLines;
-queue<Point,list<Point> > turningPos;
+deque<Point> turningPos;
 
 void help()
 {
     cout << "\ts - quit the program\n"
-         "\tb - switch to/from backprojection view\n"
-         "\tp - pause video\n"
-         "\tk - make map\n"
+         "\ti - initialize the map\n"
          "\tr - run car\n"
          "\tq - finish map\n"
          "To initialize tracking, select the object with mouse\n";
@@ -52,7 +50,7 @@ int genTrack(VideoCapture& cap){
     cout<<"The track lines are displayed. Press any key to continue"<<endl;
     waitKey(0);
 
-    
+
 
 
 
@@ -136,6 +134,9 @@ Mat sharpen(Mat src){
 
 
 void drawHoughLines(Mat& cdst){
+    cout<<"There are "<<trackLines.size()<<"track lines"<<endl;
+    //int tmp = min(int(trackLines.size()),3);
+    //for( size_t i = 0; i < tmp; i++ ){
     for( size_t i = 0; i < trackLines.size(); i++ ){
         Vec4i l = trackLines[i];
         line(cdst,Point(l[0], l[1]),Point(l[2],l[3]),Scalar(0,255,100),1,CV_AA);

@@ -5,6 +5,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <cv.h>
 
-void go2Target(cv::Point,cv::Point,std::queue<cv::Point,std::list<cv::Point> > );
+void go2Target(cv::Point,cv::Point,std::deque<cv::Point>& );
+double point_distance(cv::Point &,cv::Point &);
 
 #endif // CONTROLCAR_H_INCLUDED

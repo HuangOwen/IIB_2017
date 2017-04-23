@@ -11,7 +11,7 @@ using namespace cv;
 using namespace std;
 
 extern Mat perspectiveMatrix;
-extern queue<Point,list<Point> > turningPos;
+extern deque<Point> turningPos;
 
 int main()
 {
@@ -20,11 +20,22 @@ int main()
         return -1;
 
     help();
+    
+    Mat org;
+
+    while(true){
+	    cap >> org;
+	    imshow("orginal map",org);
+	    if(waitKey(1)=='i'){
+	    	destroyWindow("orginal map");
+	    	break;
+	    }
+    }
+
     genTrack(cap);
 
-    for(;;)
+    while(true)
 	{
-		Mat org;
 	    cap >> org;
 		//imshow("orginal video",org);
         Mat mapProcessed;
