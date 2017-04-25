@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1492926033 source:c:\users\joe\myproject\iib_2017\main.cpp
+1493123512 source:c:\users\joe\myproject\iib_2017\main.cpp
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
@@ -395,7 +395,7 @@
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
 
-1492926818 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
+1493126278 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
 	<iostream>
 	<cmath>
 	<list>
@@ -413,7 +413,7 @@
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
 
-1492853538 source:c:\users\joe\myproject\iib_2017\controlcar.cpp
+1492930096 source:c:\users\joe\myproject\iib_2017\controlcar.cpp
 	<iostream>
 	<cmath>
 	<list>
@@ -422,7 +422,7 @@
 	"traceCar.h"
 	"controlCar.h"
 
-1492928305 c:\users\joe\myproject\iib_2017\controlcar.h
+1492930057 c:\users\joe\myproject\iib_2017\controlcar.h
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>

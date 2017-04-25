@@ -125,7 +125,7 @@ Mat sharpen(Mat src){
     Mat dst(src.size().height,src.size().width,CV_8U);
     threshold(src, tmpdst, 128, 255, THRESH_BINARY_INV);  //revert the color
 
-    Mat erodeStruct = getStructuringElement(MORPH_RECT,Size(7,7));
+    Mat erodeStruct = getStructuringElement(MORPH_RECT,Size(6,6));
     erode(tmpdst,dst,erodeStruct);
     Canny(dst, dst, 50, 150, 3);  //detect the edges
 

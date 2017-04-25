@@ -16,15 +16,20 @@ extern deque<Point> turningPos;
 int main()
 {
      VideoCapture cap(0); //open camera
-     if(!cap.isOpened())
+     if(!cap.isOpened()){
+        printf("couldn't open camera\n");
         return -1;
+     }
+
 
     help();
-    
+
     Mat org;
 
     while(true){
 	    cap >> org;
+	    if(org.empty())
+            continue;
 	    imshow("orginal map",org);
 	    if(waitKey(1)=='i'){
 	    	destroyWindow("orginal map");
@@ -40,7 +45,7 @@ int main()
 		//imshow("orginal video",org);
         Mat mapProcessed;
         warpPerspective(org,mapProcessed,perspectiveMatrix,org.size(),INTER_LINEAR, BORDER_CONSTANT);
-        
+
         Point frontPos,rearPos;
         Mat mapHSV;
 		cvtColor(mapProcessed, mapHSV, CV_BGR2HSV);
@@ -57,7 +62,7 @@ int main()
         if(waitKey(1)=='s') break;
 
 
-		
+
 	}
 
 
