@@ -14,6 +14,7 @@ void onMouse(int event, int x, int y, int flags, void* param);
 cv::Mat binarize(cv::Mat);
 cv::Mat sharpen(cv::Mat);
 void drawHoughLines(cv::Mat&);
+void genTurningPos();
 
 
 
