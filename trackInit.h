@@ -15,6 +15,8 @@ cv::Mat binarize(cv::Mat);
 cv::Mat sharpen(cv::Mat);
 void drawHoughLines(cv::Mat&);
 void genTurningPos();
+bool isSameLine(cv::Vec4i,cv::Vec4i);
+cv::Point getIntersec(cv::Vec4i,cv::Vec4i);
 
 
 

@@ -33,21 +33,14 @@ bool traceCar(Mat src, Point& frontPos, Point& rearPos){
 	HoughCircles(maskRed, redCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20);
 	HoughCircles(maskGreen, greenCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20);
 
-	//drawCircle(maskRed,redCircles);
 	imshow("maskRed",maskRed);
 	imshow("maskGreen",maskGreen);
 
 	
-	// if(redCircles.size()>0 ){
-	// 	frontPos = Point(redCircles[0][0],redCircles[0][1]);
-	// 	//rearPos = Point(greenCircles[0][0],greenCircles[0][1]);
-	// 	cout<<"Car position detected!"<<endl;
-	// 	return true;
-	// }
 	if(redCircles.size()>0 && greenCircles.size()>0){
 		frontPos = Point(redCircles[0][0],redCircles[0][1]);
 		rearPos = Point(greenCircles[0][0],greenCircles[0][1]);
-	 cout<<"Car position detected!"<<endl;
+	 	cout<<"Car position detected!"<<endl;
 		return true;
 	}
 	else{

@@ -7,6 +7,8 @@
 
 #define ERODE_SIZE 6
 #define MIN_CENTER_DIS 30
+#define MIN_ADJDELTA 20
+#define PI 3.14159
 
 using namespace std;
 using namespace cv;
@@ -145,7 +147,7 @@ Mat sharpen(Mat src){
 
 
 void drawHoughLines(Mat& cdst){
-    cout<<"\nThere are "<<trackLines.size()<<"track lines"<<endl;
+    cout<<"\nDetected "<<trackLines.size()<<" raw track lines"<<endl;
     for( size_t i = 0; i < trackLines.size(); i++ ){
         Vec4i l = trackLines[i];
         line(cdst,Point(l[0], l[1]),Point(l[2],l[3]),Scalar(0,255,100),1,CV_AA);
@@ -156,13 +158,12 @@ void drawHoughLines(Mat& cdst){
 
 void genTurningPos(){
 
-    cout<<"hhhhh"<<endl;
-
-    int i,line_num = trackLines.size();
+    int i,minx_point_index,line_num = trackLines.size();
+    double minx;
 
     //trackLines[i][0],[i][2] is x ; [i][1],[i][3] is y
     if(line_num>0){
-        minx = trackLines[0][0]
+        minx = trackLines[0][0];
         minx_point_index = 0;
     }
 
@@ -188,9 +189,50 @@ void genTurningPos(){
         secondPoint = tmp;
     }
 
+    vector<Vec4i> reducedLines;
+    reducedLines.push_back(trackLines[minx_point_index]);
 
-    //clearSameLine()
+    for(unsigned i=0; i<trackLines.size(); i++){
+        bool same=false;
+        for(unsigned j=0; j<reducedLines.size(); j++)
+            same += isSameLine(trackLines[i],reducedLines[j]);
 
-    //calculate the intersection point
+        if(!same)
+            reducedLines.push_back(trackLines[i]);
+    }
+
+    cout<<"\nAfter reduction, there are "<<reducedLines.size()<<" trackLines"<<endl;
+
+    
+
+}
+
+
+bool isSameLine(Vec4i line1,Vec4i line2){
+    bool flag1 = false;
+    bool flag2 = false;
+
+    double k1 = (line1[3]-line1[1])/(line1[2]-line1[0]);
+    double k2 = (line2[3]-line2[1])/(line2[2]-line2[0]);
+
+    double delta = (atan(k1)-atan(k2))*180/PI;
+    if(delta<MIN_ADJDELTA)
+        flag1 = true;
+
+    double x1 = (line1[0]+line1[2])/2;
+    double y1 = (line1[1]+line1[3])/2;
+    double x2 = (line2[0]+line2[2])/2;
+    double y2 = (line2[1]+line2[3])/2;
+    double dx = x1-x2;
+    double dy = y1-y2;
+    double distance = sqrt(dx*dx+dy*dy);
+    if(distance<MIN_CENTER_DIS)
+        flag2 = true;
+
+    return (flag1&&flag2);
+}
+
+
+Point getIntersec(Vec4i,Vec4i){
 
 }
