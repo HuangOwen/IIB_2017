@@ -201,9 +201,23 @@ void genTurningPos(){
             reducedLines.push_back(trackLines[i]);
     }
 
+
+
+
+
     cout<<"\nAfter reduction, there are "<<reducedLines.size()<<" trackLines"<<endl;
 
-    
+
+
+
+
+    // not finisheddddddddddddddddddddddddddddddddddddddddddd
+
+
+
+
+
+
 
 }
 
@@ -233,6 +247,14 @@ bool isSameLine(Vec4i line1,Vec4i line2){
 }
 
 
-Point getIntersec(Vec4i,Vec4i){
+Point getIntersec(Vec4i l1,Vec4i l2){
+    double k1 = (l1[3]-l1[1])/(l1[2]-l1[0]);
+    double k2 = (l2[3]-l2[1])/(l2[2]-l2[0]);
+    double b1 = l1[1]-k1*l1[0];
+    double b2 = l2[1]-k2*l2[0];
 
+    double ins_x = (b2-b1)/(k1-k2);
+    double ins_y = k1*ins_x+b1;
+
+    return Point(inx,ins_y);
 }
