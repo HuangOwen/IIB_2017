@@ -50,11 +50,3 @@ bool traceCar(Mat src, Point& frontPos, Point& rearPos){
 	
 }
 
-
-void drawCircle(Mat &input, const vector<Vec3f> &circles){
-    for(int i=0; i<circles.size(); i++){
-        Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
-        int radius = cvRound(circles[i][2]);
-        circle(input, center, radius, Scalar(255,0,0), 3, 8, 0 );
-    }
-}

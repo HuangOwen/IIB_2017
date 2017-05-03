@@ -6,8 +6,8 @@
 
 
 #define ERODE_SIZE 6
-#define MIN_CENTER_DIS 30
-#define MIN_ADJDELTA 20
+#define MIN_CENTER_DIS 300   // two different lines' minimum center distance
+#define MIN_ADJDELTA 30     // two different lines' minimum angle difference
 #define PI 3.14159
 
 using namespace std;
@@ -56,16 +56,16 @@ int genTrack(VideoCapture& cap){
     drawHoughLines(mapProcessed);
 
     //analyze the hough lines and  generate the turning point sequence
-    //analyze the global trackLines, store the output in turningPos
-    genTurningPos(); 
+    //analyze the global trackLines, store the output in turningPos queue
+    genTurningPos(mapProcessed); 
 
-    imshow("track lines",mapProcessed);
-    cout<<"The track lines are displayed. Press any key to continue"<<endl;
+    for(int i=0;i<turningPos.size();i++)
+        circle(mapProcessed, turningPos[i], 10, Scalar(255,255), 3, 8, 0 );
+
+    imshow("Track lines and turning positions",mapProcessed);
+
+    cout<<"The track lines and turning positions are displayed. Press any key to continue"<<endl;
     waitKey(0);
-
-
-
-
 
     return 0;
 }
@@ -150,13 +150,13 @@ void drawHoughLines(Mat& cdst){
     cout<<"\nDetected "<<trackLines.size()<<" raw track lines"<<endl;
     for( size_t i = 0; i < trackLines.size(); i++ ){
         Vec4i l = trackLines[i];
-        line(cdst,Point(l[0], l[1]),Point(l[2],l[3]),Scalar(0,255,100),1,CV_AA);
+        line(cdst,Point(l[0], l[1]),Point(l[2],l[3]),Scalar(0,100,100),1,CV_AA);
         }
 }
 
 
 
-void genTurningPos(){
+void genTurningPos(Mat& sourceMap){
 
     int i,minx_point_index,line_num = trackLines.size();
     double minx;
@@ -179,9 +179,10 @@ void genTurningPos(){
     }
 
     Point startPoint,secondPoint;
+    Vec4i currentLine = trackLines[minx_point_index];
 
-    startPoint = Point(trackLines[minx_point_index][0],trackLines[minx_point_index][1]);
-    secondPoint = Point(trackLines[minx_point_index][2],trackLines[minx_point_index][3]);
+    startPoint = Point(currentLine[0],currentLine[1]);
+    secondPoint = Point(currentLine[2],currentLine[3]);
 
     if(startPoint.x>secondPoint.x){
         Point tmp = startPoint;
@@ -189,8 +190,11 @@ void genTurningPos(){
         secondPoint = tmp;
     }
 
+    //add the start point to the turningPos queue
+    turningPos.push_back(startPoint);
+
     vector<Vec4i> reducedLines;
-    reducedLines.push_back(trackLines[minx_point_index]);
+    reducedLines.push_back(currentLine);
 
     for(unsigned i=0; i<trackLines.size(); i++){
         bool same=false;
@@ -201,24 +205,48 @@ void genTurningPos(){
             reducedLines.push_back(trackLines[i]);
     }
 
-
-
-
+    for(i=0;i<reducedLines.size();i++)
+        line(sourceMap,Point(reducedLines[i][0], reducedLines[i][1]),Point(reducedLines[i][2],reducedLines[i][3]),Scalar(0,255,255),1,CV_AA);
 
     cout<<"\nAfter reduction, there are "<<reducedLines.size()<<" trackLines"<<endl;
+    Point currentPoint(secondPoint.x,secondPoint.y);
 
+    //erase the first line after current point and current line is saved
+    reducedLines.erase(reducedLines.begin());
+    int trackNum = reducedLines.size();
 
+    //find the turning point sequence
+    for (int j=0;j<trackNum;j++){
 
+        int nextIndex = 0;
+        double min_pointDist = xyPointDist(currentPoint.x,currentPoint.y,reducedLines[0][0],reducedLines[0][1]);
+        for(i=0;i<reducedLines.size();i++){
+            double tmpdst1 = xyPointDist(currentPoint.x,currentPoint.y,reducedLines[i][0],reducedLines[i][1]);
+            double tmpdst2 = xyPointDist(currentPoint.x,currentPoint.y,reducedLines[i][2],reducedLines[i][3]);
+            if(tmpdst1<min_pointDist){
+                min_pointDist = tmpdst1;
+                nextIndex = i;
+            }
+            if(tmpdst2<min_pointDist){
+                min_pointDist = tmpdst2;
+                nextIndex = i;
+            }
+        }
+        Vec4i nextLine = reducedLines[nextIndex];
+        reducedLines.erase(reducedLines.begin()+nextIndex);
+        Point intersection = getIntersec(currentLine,nextLine);
 
+        turningPos.push_back(intersection);
+        if(xyPointDist(intersection.x,intersection.y,nextLine[0],nextLine[1])<xyPointDist(intersection.x,intersection.y,nextLine[2],nextLine[3])) 
+            currentPoint = Point(nextLine[2],nextLine[3]);
+        else
+            currentPoint = Point(nextLine[0],nextLine[1]);
 
-    // not finisheddddddddddddddddddddddddddddddddddddddddddd
+        currentLine = nextLine;
+    }
 
-
-
-
-
-
-
+    //the last point
+    turningPos.push_back(currentPoint);
 }
 
 
@@ -230,7 +258,7 @@ bool isSameLine(Vec4i line1,Vec4i line2){
     double k2 = (line2[3]-line2[1])/(line2[2]-line2[0]);
 
     double delta = (atan(k1)-atan(k2))*180/PI;
-    if(delta<MIN_ADJDELTA)
+    if(abs(delta)<MIN_ADJDELTA)
         flag1 = true;
 
     double x1 = (line1[0]+line1[2])/2;
@@ -248,13 +276,33 @@ bool isSameLine(Vec4i line1,Vec4i line2){
 
 
 Point getIntersec(Vec4i l1,Vec4i l2){
-    double k1 = (l1[3]-l1[1])/(l1[2]-l1[0]);
-    double k2 = (l2[3]-l2[1])/(l2[2]-l2[0]);
-    double b1 = l1[1]-k1*l1[0];
-    double b2 = l2[1]-k2*l2[0];
+    Vec4d l1b = l1;
+    Vec4d l2b = l2;
+    double k1 = (l1b[3]-l1b[1])/(l1b[2]-l1b[0]);
+    double k2 = (l2b[3]-l2b[1])/(l2b[2]-l2b[0]);
+    double b1 = l1b[1]-k1*l1b[0];
+    double b2 = l2b[1]-k2*l2b[0];
 
     double ins_x = (b2-b1)/(k1-k2);
     double ins_y = k1*ins_x+b1;
 
-    return Point(inx,ins_y);
+    return Point(ins_x,ins_y);
+}
+
+
+double xyPointDist(double x1,double y1, double x2, double y2){
+    double dx = x1-x2;
+    double dy = y1-y2;
+    return sqrt(dx*dx+dy*dy);
+}
+
+
+
+
+void drawCircle(Mat &input, const vector<Vec3f> &circles){
+    for(int i=0; i<circles.size(); i++){
+        Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+        int radius = cvRound(circles[i][2]);
+        circle(input, center, radius, Scalar(255,0,0), 3, 8, 0 );
+    }
 }

@@ -6,6 +6,6 @@
 #include <cv.h>
 
 bool traceCar(cv::Mat,cv::Point&,cv::Point&);
-void drawCircle(cv::Mat&, const std::vector<cv::Vec3f>&);
+
 
 #endif // TRACECAR_H_INCLUDED
