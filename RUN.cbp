@@ -57,6 +57,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="BLE_CAR.h" />
+		<Unit filename="BLE_PORT.h" />
 		<Unit filename="controlCar.cpp" />
 		<Unit filename="controlCar.h" />
 		<Unit filename="main.cpp" />

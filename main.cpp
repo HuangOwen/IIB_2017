@@ -6,12 +6,17 @@
 #include "trackInit.h"
 #include "traceCar.h"
 #include "controlCar.h"
+#include "BLE_PORT.h"
+#include "BLE_CAR.h"
+
+
 
 using namespace cv;
 using namespace std;
 
 extern Mat perspectiveMatrix;
 extern deque<Point> turningPos;
+car car_instance;
 
 int main()
 {
@@ -61,10 +66,7 @@ int main()
         imshow("mapProcessed",mapProcessed);
         if(waitKey(1)=='s') break;
 
-
-
 	}
-
 
     return 0;
 }

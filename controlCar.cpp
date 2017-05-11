@@ -5,11 +5,15 @@
 #include "trackInit.h"
 #include "traceCar.h"
 #include "controlCar.h"
+#include "BLE_PORT.h"
+#include "BLE_CAR.h"
 
 #define PI 3.14
 
 using namespace std;
 using namespace cv;
+
+extern car car_instance;
 
 void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 	Point carCenter = Point((frontPos.x+rearPos.x)/2,(frontPos.y+rearPos.y)/2);
