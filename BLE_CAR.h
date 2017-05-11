@@ -7,7 +7,7 @@ class car
 {
 	ComPort com;
 public:
-	car():com("\\\\.\\COM4")
+	car():com("\\\\.\\COM3")
 	{
 	}
 	void turnl()

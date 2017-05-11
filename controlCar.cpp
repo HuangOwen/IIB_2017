@@ -9,6 +9,7 @@
 #include "BLE_CAR.h"
 
 #define PI 3.14
+#define COMMAND_INTERVAL 5000
 
 using namespace std;
 using namespace cv;
@@ -30,16 +31,29 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 		double slopeCar = (frontPos.y-rearPos.y)/(frontPos.x-rearPos.x);
 		double theta = (atan(slopeTarget)-atan(slopeCar)) * 180 / PI;   //degree unit
 		if(abs(theta)>10){
-			if(slopeTarget>slopeCar)
+			if(slopeTarget>slopeCar){
 				cout<<"Now turn right"<<endl;
-			else
+				car_instance.turnr();
+				_sleep(COMMAND_INTERVAL);
+			}
+			else{
 				cout<<"Now turn left"<<endl;
+				car_instance.turnl();
+				_sleep(COMMAND_INTERVAL);
+			}
 		}
-		else
+		else{
 			cout<<"Now go forward"<<endl;
+			car_instance.run();
+			_sleep(COMMAND_INTERVAL);
+		}
 
 	}
-	cout<<"go2Target"<<endl;
+	else{
+		car_instance.stop();
+		_sleep(COMMAND_INTERVAL);
+		cout<<"STOP"<<endl;
+	}
 }
 
 

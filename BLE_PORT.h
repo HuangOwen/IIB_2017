@@ -48,8 +48,8 @@ public:
 			0,
 			//独占方式
 			NULL,
-			OPEN_EXISTING, //打洙开而不是创建
-			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED, //异皑步I/O重叠
+			OPEN_EXISTING, 
+			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED, //异步I/O
 			NULL);
 		if(hCom == INVALID_HANDLE_VALUE)
 		{
