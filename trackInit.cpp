@@ -6,10 +6,10 @@
 
 
 #define ERODE_SIZE 6
-#define MIN_CENTER_DIS 300   // two different lines' minimum center distance
+#define MIN_CENTER_DIS 200   // two different lines' minimum center distance
 #define MIN_ADJDELTA 30     // two different lines' minimum angle difference
 #define PI 3.14159
-
+#define MIN_TRACK_LEN 30
 using namespace std;
 using namespace cv;
 
@@ -23,11 +23,13 @@ deque<Point> turningPos;
 
 void help()
 {
-    cout << "\ts - quit the program\n"
+    cout << 
          "\ti - initialize the map\n"
-         "\tr - run car\n"
-         "\tq - finish map\n"
-         "To initialize tracking, select the object with mouse\n";
+         "\tf - run forward manually\n"
+         "\tr - turn right manually\n"
+         "\tl - turn left manually\n"
+         "\tb - run backward manually\n"
+         "\ts - quit the program\n";
 }
 
 
@@ -52,7 +54,7 @@ int genTrack(VideoCapture& cap){
     waitKey(0);
 
     //use Hough line transformation to detect the lines
-    HoughLinesP(mapSharpend,trackLines,0.5, CV_PI/90,50,50,50);
+    HoughLinesP(mapSharpend,trackLines,0.5, CV_PI/90,50,MIN_TRACK_LEN,50);
     drawHoughLines(mapProcessed);
 
     //analyze the hough lines and  generate the turning point sequence

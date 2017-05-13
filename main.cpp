@@ -56,15 +56,27 @@ int main()
 		cvtColor(mapProcessed, mapHSV, CV_BGR2HSV);
         bool carDetected = traceCar(mapHSV,frontPos,rearPos);
 
-        //draw the front point
+        //draw the front pointq
         if(carDetected){
-        	circle(mapProcessed, frontPos, 15, Scalar(0,255,0), 3, 8, 0 );
-        	circle(mapProcessed, rearPos, 15, Scalar(0,0,255), 3, 8, 0 );
-        	go2Target(frontPos,rearPos,turningPos);
+        	circle(mapProcessed, rearPos, 15, Scalar(0,255,0), 3, 8, 0 );
+        	circle(mapProcessed, frontPos, 15, Scalar(0,0,255), 3, 8, 0 );
+        	//go2Target(frontPos,rearPos,turningPos);
         }
 
         imshow("mapProcessed",mapProcessed);
-        if(waitKey(1)=='s') break;
+        char input = waitKey(1);
+        if(input=='s')
+            car_instance.stop();
+        if(input=='r')
+            car_instance.turnr();
+        if(input=='l')
+            car_instance.turnl();
+        if(input=='b')
+            car_instance.back();
+        if(input=='f')
+            car_instance.run();
+        if(input=='q')
+            break;
 
 	}
 

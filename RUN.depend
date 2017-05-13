@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494516966 source:c:\users\joe\myproject\iib_2017\main.cpp
+1494687169 source:c:\users\joe\myproject\iib_2017\main.cpp
 	<opencv2/core/core.hpp>
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
@@ -397,14 +397,14 @@
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
 
-1493813993 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
+1494684592 source:c:\users\joe\myproject\iib_2017\trackinit.cpp
 	<iostream>
 	<cmath>
 	<list>
 	<queue>
 	"trackInit.h"
 
-1493804782 source:c:\users\joe\myproject\iib_2017\tracecar.cpp
+1494688506 source:c:\users\joe\myproject\iib_2017\tracecar.cpp
 	<iostream>
 	<cmath>
 	"trackInit.h"
@@ -415,7 +415,7 @@
 	<opencv2/highgui/highgui.hpp>
 	<cv.h>
 
-1494517623 source:c:\users\joe\myproject\iib_2017\controlcar.cpp
+1494685335 source:c:\users\joe\myproject\iib_2017\controlcar.cpp
 	<iostream>
 	<cmath>
 	<list>
@@ -435,6 +435,6 @@
 	<iostream>
 	<Windows.h>
 
-1494517697 c:\users\joe\myproject\iib_2017\ble_car.h
+1494684406 c:\users\joe\myproject\iib_2017\ble_car.h
 	"BLE_PORT.h"
 

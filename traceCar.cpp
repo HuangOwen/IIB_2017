@@ -3,8 +3,12 @@
 #include "trackInit.h"
 #include "traceCar.h"
 
+#define MIN_RADIUS 0
+#define MAX_RADIUS 100
+
 using namespace std;
 using namespace cv;
+
 
 
 //the HSV range
@@ -30,8 +34,8 @@ bool traceCar(Mat src, Point& frontPos, Point& rearPos){
 	maskRed = maskRed1 | maskRed2;
 
 
-	HoughCircles(maskRed, redCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20);
-	HoughCircles(maskGreen, greenCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20);
+	HoughCircles(maskRed, redCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20,MIN_RADIUS,MAX_RADIUS);
+	HoughCircles(maskGreen, greenCircles, CV_HOUGH_GRADIENT, 2, 50, 200, 20,MIN_RADIUS,MAX_RADIUS);
 
 	imshow("maskRed",maskRed);
 	imshow("maskGreen",maskGreen);

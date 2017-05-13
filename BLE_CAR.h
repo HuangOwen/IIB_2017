@@ -12,11 +12,13 @@ public:
 	}
 	void turnl()
 	{
-		com.Send('L');
+		com.Send('R');
+		//com.Send('L');
 	}
 	void turnr()
 	{
-		com.Send('R');
+		//com.Send('R');
+		com.Send('L');
 	}
 	void run()
 	{

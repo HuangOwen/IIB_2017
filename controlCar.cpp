@@ -9,7 +9,7 @@
 #include "BLE_CAR.h"
 
 #define PI 3.14
-#define COMMAND_INTERVAL 5000
+#define COMMAND_INTERVAL 100
 
 using namespace std;
 using namespace cv;
@@ -45,13 +45,11 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 		else{
 			cout<<"Now go forward"<<endl;
 			car_instance.run();
-			_sleep(COMMAND_INTERVAL);
 		}
 
 	}
 	else{
 		car_instance.stop();
-		_sleep(COMMAND_INTERVAL);
 		cout<<"STOP"<<endl;
 	}
 }
