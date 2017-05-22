@@ -23,6 +23,7 @@ extern car car_instance;
 void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 	Point carCenter = Point((frontPos.x+rearPos.x)/2,(frontPos.y+rearPos.y)/2);
 
+
 	if(turningPos.size()>0){
 		if(point_distance(turningPos[0],carCenter)<MIN_TURNPOS){
 			turningPos.pop_front();
@@ -33,6 +34,11 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 
 	if(turningPos.size()>0){
 		Point target = turningPos[0];
+		// to avoid divide by zero error
+		if((target.x-carCenter.x)==0)
+            target.x += 1;
+        if((frontPos.x-rearPos.x)==0)
+            frontPos.x += 1;
 		double slopeTarget = (target.y-carCenter.y)/(target.x-carCenter.x);
 		double slopeCar = (frontPos.y-rearPos.y)/(frontPos.x-rearPos.x);
 		double theta = (atan(slopeTarget)-atan(slopeCar)) * 180 / PI;   //degree unit
@@ -57,7 +63,6 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 			cout<<"Go forward"<<endl;
 			car_instance.run();
 		}
-
 	}
 	else{
 		car_instance.stop();

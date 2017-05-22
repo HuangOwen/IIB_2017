@@ -5,11 +5,11 @@
 #include "trackInit.h"
 
 
-#define ERODE_SIZE 6
-#define MIN_CENTER_DIS 200   // two different lines' minimum center distance
-#define MIN_ADJDELTA 30     // two different lines' minimum angle difference
+#define ERODE_SIZE 3
+#define MIN_CENTER_DIS 150   // two different lines' minimum center distance
+#define MIN_ADJDELTA 20     // two different lines' minimum angle difference
 #define PI 3.14159
-#define MIN_TRACK_LEN 30
+#define MIN_TRACK_LEN 20
 using namespace std;
 using namespace cv;
 
@@ -23,7 +23,7 @@ deque<Point> turningPos;
 
 void help()
 {
-    cout << 
+    cout <<
          "\ti - initialize the map\n"
          "\tf - run forward manually\n"
          "\tr - turn right manually\n"
@@ -59,7 +59,7 @@ int genTrack(VideoCapture& cap){
 
     //analyze the hough lines and  generate the turning point sequence
     //analyze the global trackLines, store the output in turningPos queue
-    genTurningPos(mapProcessed); 
+    genTurningPos(mapProcessed);
 
     for(int i=0;i<turningPos.size();i++)
         circle(mapProcessed, turningPos[i], 10, Scalar(255,255), 3, 8, 0 );
@@ -239,7 +239,7 @@ void genTurningPos(Mat& sourceMap){
         Point intersection = getIntersec(currentLine,nextLine);
 
         turningPos.push_back(intersection);
-        if(xyPointDist(intersection.x,intersection.y,nextLine[0],nextLine[1])<xyPointDist(intersection.x,intersection.y,nextLine[2],nextLine[3])) 
+        if(xyPointDist(intersection.x,intersection.y,nextLine[0],nextLine[1])<xyPointDist(intersection.x,intersection.y,nextLine[2],nextLine[3]))
             currentPoint = Point(nextLine[2],nextLine[3]);
         else
             currentPoint = Point(nextLine[0],nextLine[1]);
