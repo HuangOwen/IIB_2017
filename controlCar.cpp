@@ -9,7 +9,11 @@
 #include "BLE_CAR.h"
 
 #define PI 3.14
-#define COMMAND_INTERVAL 100
+#define MIN_TURNPOS 30	// the minimum distance to pop a turning position
+#define MIN_DEVIATION_ANGLE 15 // the minimum direction deviation (degree)
+#define MIN_DEVIATION_DIS 40 // the minimum deviation distance
+#define DIS_TOFAR  80 // the threshold of going too far
+#define COMMAND_INTERVAL 150
 
 using namespace std;
 using namespace cv;
@@ -20,8 +24,10 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 	Point carCenter = Point((frontPos.x+rearPos.x)/2,(frontPos.y+rearPos.y)/2);
 
 	if(turningPos.size()>0){
-		if(point_distance(turningPos[0],carCenter)<10){
+		if(point_distance(turningPos[0],carCenter)<MIN_TURNPOS){
 			turningPos.pop_front();
+			cout<<"Finished a turning point"<<endl;
+			cout<<"Still "<<turningPos.size()<<" points left"<<endl;
 		}
 	}
 
@@ -30,20 +36,25 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 		double slopeTarget = (target.y-carCenter.y)/(target.x-carCenter.x);
 		double slopeCar = (frontPos.y-rearPos.y)/(frontPos.x-rearPos.x);
 		double theta = (atan(slopeTarget)-atan(slopeCar)) * 180 / PI;   //degree unit
-		if(abs(theta)>10){
+		if(abs(theta)>MIN_DEVIATION_ANGLE){
 			if(slopeTarget>slopeCar){
-				cout<<"Now turn right"<<endl;
+				cout<<"Turn right"<<endl;
 				car_instance.turnr();
 				_sleep(COMMAND_INTERVAL);
 			}
 			else{
-				cout<<"Now turn left"<<endl;
+				cout<<"Turn left"<<endl;
 				car_instance.turnl();
 				_sleep(COMMAND_INTERVAL);
 			}
 		}
+		else if(carCenter.x > (target.x+DIS_TOFAR)){
+			cout<<"Go back"<<endl;
+			car_instance.back();
+			_sleep(COMMAND_INTERVAL);
+		}
 		else{
-			cout<<"Now go forward"<<endl;
+			cout<<"Go forward"<<endl;
 			car_instance.run();
 		}
 
@@ -55,8 +66,3 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 }
 
 
-double point_distance(Point& a,Point& b){
-	double dx = a.x-b.x;
-	double dy = a.y-b.y;
-	return sqrt(dx*dx+dy*dy);
-}

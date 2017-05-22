@@ -6,6 +6,7 @@
 #include <cv.h>
 
 bool traceCar(cv::Mat,cv::Point&,cv::Point&);
+double point_distance(cv::Point &,cv::Point &);
 
 
 #endif // TRACECAR_H_INCLUDED
