@@ -6,7 +6,7 @@
 
 
 #define ERODE_SIZE 3
-#define MIN_CENTER_DIS 150   // two different lines' minimum center distance
+#define MIN_CENTER_DIS 250   // two different lines' minimum center distance
 #define MIN_ADJDELTA 20     // two different lines' minimum angle difference
 #define PI 3.14159
 #define MIN_TRACK_LEN 20
@@ -67,6 +67,8 @@ int genTrack(VideoCapture& cap){
     imshow("Track lines and turning positions",mapProcessed);
 
     cout<<"The track lines and turning positions are displayed. Press any key to continue"<<endl;
+
+    cout<<"Still "<<turningPos.size()<<" points left"<<endl;
     waitKey(0);
 
     return 0;

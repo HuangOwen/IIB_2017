@@ -3,8 +3,8 @@
 #include "trackInit.h"
 #include "traceCar.h"
 
-#define MIN_RADIUS 0
-#define MAX_RADIUS 100
+#define MIN_RADIUS 10
+#define MAX_RADIUS 30
 #define CAR_LENGTH 70 //the minimum distance from rear pos to front pos
 
 using namespace std;
@@ -17,8 +17,8 @@ const Scalar hsvRedL1( 0,  70,  40);
 const Scalar hsvRedH1(10, 200, 220);
 const Scalar hsvRedL2(170, 70, 50);
 const Scalar hsvRedH2(180, 200, 220);
-const Scalar hsvGreenL(35,  40,  40);
-const Scalar hsvGreenH(77, 255, 255);  
+const Scalar hsvGreenL(30,  40,  30);
+const Scalar hsvGreenH(80, 200, 255);  
 
 
 bool traceCar(Mat src, Point& frontPos, Point& rearPos){
