@@ -5,11 +5,11 @@
 #include "trackInit.h"
 
 
-#define ERODE_SIZE 3
-#define MIN_CENTER_DIS 250   // two different lines' minimum center distance
+#define ERODE_SIZE 2
+#define MIN_CENTER_DIS 200   // two different lines' minimum center distance
 #define MIN_ADJDELTA 20     // two different lines' minimum angle difference
 #define PI 3.14159
-#define MIN_TRACK_LEN 20
+#define MIN_TRACK_LEN 30
 using namespace std;
 using namespace cv;
 
@@ -144,7 +144,7 @@ Mat sharpen(Mat src){
 
     Mat erodeStruct = getStructuringElement(MORPH_RECT,Size(ERODE_SIZE,ERODE_SIZE));
     erode(tmpdst,dst,erodeStruct);
-    Canny(dst, dst, 50, 150, 3);  //detect the edges
+    //Canny(dst, dst, 50, 150, 3);  //detect the edges
 
     return dst;
 }

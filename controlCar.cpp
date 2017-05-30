@@ -10,8 +10,7 @@
 
 #define PI 3.14
 #define MIN_TURNPOS 60	// the minimum distance to pop a turning position
-#define MIN_DEVIATION_ANGLE 15 // the minimum direction deviation (degree)
-#define MIN_DEVIATION_DIS 40 // the minimum deviation distance
+#define MIN_DEVIATION_ANGLE 10 // the minimum direction deviation (degree)
 #define DIS_TOFAR  40 // the threshold of going too far
 #define COMMAND_INTERVAL 150
 
@@ -25,7 +24,9 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 
 
 	if(turningPos.size()>0){
-		if(point_distance(turningPos[0],carCenter)<MIN_TURNPOS){
+		// if(point_distance(turningPos[0],carCenter)<MIN_TURNPOS){
+		// if(point_distance(turningPos[0],carCenter)<MIN_TURNPOS && (frontPos.x>turningPos[0].x || frontPos.y>turningPos[0].y)){
+		if(point_distance(turningPos[0],frontPos)<MIN_TURNPOS*0.8 || point_distance(turningPos[0],carCenter)<MIN_TURNPOS){
 			turningPos.pop_front();
 			cout<<"Finished a turning point"<<endl;
 			cout<<"Still "<<turningPos.size()<<" points left"<<endl;
@@ -39,12 +40,15 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
             target.x += 1;
         if((frontPos.x-rearPos.x)==0)
             frontPos.x += 1;
-		double slopeTarget = (target.y-carCenter.y)/(target.x-carCenter.x);
+		double slopeTarget_center = (target.y-carCenter.y)/(target.x-carCenter.x);
+		if((target.x-frontPos.x)==0)
+            target.x += 1;
+		double slopeTarget_front = (target.y-frontPos.y)/(target.x-frontPos.x);
 		double slopeCar = (frontPos.y-rearPos.y)/(frontPos.x-rearPos.x);
-		double theta = (atan(slopeTarget)-atan(slopeCar)) * 180 / PI;   //degree unit
+		double theta = (atan(slopeTarget_front)-atan(slopeCar)) * 180 / PI;   //degree unit
 		cout<<"Still "<<turningPos.size()<<" points left"<<endl;
 		if(abs(theta)>MIN_DEVIATION_ANGLE){
-			if(slopeTarget>slopeCar){
+			if(slopeTarget_front>slopeCar || slopeTarget_center>slopeCar){
 				cout<<"Turn right"<<endl;
 				if(frontPos.x>rearPos.x)
 					car_instance.turnr();
@@ -61,7 +65,8 @@ void go2Target(Point frontPos,Point rearPos,deque<Point>& turningPos){
 				_sleep(COMMAND_INTERVAL);
 			}
 		}
-		else if(carCenter.x > (target.x+DIS_TOFAR)){
+		// else if(carCenter.x > (target.x+DIS_TOFAR)){
+		else if(frontPos.x > (target.x+DIS_TOFAR)){
 			cout<<"Go back"<<endl;
 			if(frontPos.x>rearPos.x)
 				car_instance.back();
