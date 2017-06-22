@@ -5,7 +5,7 @@
 #include "trackInit.h"
 
 
-#define ERODE_SIZE 2
+#define ERODE_SIZE 4
 #define MIN_CENTER_DIS 200   // two different lines' minimum center distance
 #define MIN_ADJDELTA 20     // two different lines' minimum angle difference
 #define PI 3.14159
