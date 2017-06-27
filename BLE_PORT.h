@@ -143,7 +143,7 @@ public:
 		BOOL bReadStatus;
 		bReadStatus=ReadFile(hCom,lpInBuffer,
 		dwBytesRead,&dwBytesRead,&m_osRead);
-		if(!bReadStatus) //如?果?ReadFile函ˉ数簓返う?回?FALSE
+		if(!bReadStatus) 
 		{
 			if(GetLastError()==ERROR_IO_PENDING)
 			{

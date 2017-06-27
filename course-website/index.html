@@ -1,362 +1,305 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>工科创 IIB 05</title>
-<!-- BOOTSTRAP CORE STYLE CSS -->
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
-<!-- FONT AWESOME CSS -->
-<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
- <!-- FLEXSLIDER CSS -->
-<link href="assets/css/flexslider.css" rel="stylesheet" />
-<!-- CUSTOM STYLE CSS -->
-<link href="assets/css/style.css" rel="stylesheet" />    
-<!-- Google	Fonts -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>工科创 IIB 05</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- FLEXSLIDER CSS -->
+    <link href="assets/css/flexslider.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- Google	Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
 </head>
-<body >
 
-<div class="navbar navbar-inverse navbar-fixed-top " id="menu">
-	<div class="container">
-
-		<div class="navbar-header" style="font-size:25px;line-height: 2.3">
-		2017 IIB #05
-			<!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top " id="menu">
+        <div class="container">
+            <div class="navbar-header" style="font-size:25px;line-height: 2.3">
+                2017 IIB #05
+                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#"><span>IIB #05</span></a> -->
-		</div>
-		<div class="navbar-collapse collapse move-me">
-			<ul class="nav navbar-nav navbar-right">
-				<li ><a href="#home">项目概况</a></li>
-				 <li><a href="#project-result">项目成果</a></li>
-				<li><a href="#project-structure">整体结构</a></li>
-				<li><a href="#software">软件部分</a></li>
-				 <li><a href="#hardware">硬件部分</a></li>
-				 <li><a href="#test-result">测试情况</a></li>
-				 <li><a href="#improvement">不足与改进</a></li>
-				 <li><a href="#appendix">附录</a></li>
-				 
-			</ul>
-		</div>
-	   
-	</div>
-</div>
-  <!--NAVBAR SECTION END-->
-   <div class="home-sec" id="home" >
-	   <div class="overlay">
-<div class="container">
-	   <div class="row text-center " >
-	   
-		   <div class="col-lg-12  col-md-12 col-sm-12">
-		   
-			<div class="flexslider set-flexi" id="main-section" >
-				<ul class="slides move-me">
-					<!-- Slider 01 -->
-					<li>
-						  
-					   <h1>工科创 IIB 05 组</h1>
-						
-						<h3>冯一飞 &nbsp;&nbsp;徐睿 &nbsp;&nbsp;瞿哲</h3>
-						<br>
-						<p>
-						待补充待补充待补充待补充待补充待补充待补充待补充待补充<br>
-						待补充待补充待补充待补充待补充待补充待补充待补充待补充<br>
-						待补充待补充待补充待补充待补充待补充待补充待补充待补充<br>
-						</p>
-					</li>
-					<!-- End Slider 01 -->
-				</ul>
-			</div>
-			   
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home">项目概况</a></li>
+                    <!--  <li><a href="#project-result">项目成果</a></li> -->
+                    <li><a href="#team-member">团队成员</a></li>
+                    <li><a href="#software">软件部分</a></li>
+                    <li><a href="#hardware">硬件部分</a></li>
+                    <li><a href="#test-result">测试情况</a></li>
+                    <li><a href="#appendix">项目源代码</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--NAVBAR SECTION END-->
+    <div class="home-sec" id="home">
+        <div class="overlay">
+            <div class="container">
+                <div class="row text-center ">
+                    <div class="col-lg-12  col-md-12 col-sm-12">
+                        <div class="flexslider set-flexi" id="main-section">
+                            <ul class="slides move-me">
+                                <!-- Slider 01 -->
+                                <li>
+                                    <h1>工科创 IIB 05 组</h1>
+                                    <h3>冯一飞 &nbsp;&nbsp;徐睿 &nbsp;&nbsp;瞿哲</h3>
+                                    <br>
+                                    <p>
+                                        本项目使用 OpenCV+Codeblocks 进行上位机的图像部分处理，使用 MSP430 单片机控制小车，使用 energine 进行单片机代码的编写调试，用sscom作为蓝牙串口调试工具。实现了通过计算机进行轨道识别和小车识别，自动追踪小车位置并发送蓝牙指令，完成小车走黑线的任务。
+                                    </p>
+                                </li>
+                                <!-- End Slider 01 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FEATURES SECTION END-->
+    <div id="team-member">
+        <div class="container set-pad">
+            <div class="row text-center">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                    <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">团队成员</h1>
+                    <p data-scroll-reveal="enter from the bottom after 0.3s">
+                        <b>【左】 徐睿，【中】 冯一飞 【右】 瞿哲 </b>
+                        <br>
+                        <img src="pics/team-member.jpg" width="86%" />
+                    </p>
+                </div>
+            </div>
+            <!--/.HEADER LINE END-->
+            <div class="row">
+                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
+                    <div class="faculty-div">
+                        <h3>徐睿 </h3>
+                        <hr />
+                        <p>
+                            <b>负责部分：</b>
+                            <br /> 单片机代码调试与改进，蓝牙模块代码编写，地图制作，报告撰写
+                            <br>
+                            <br>
+                            <b>个人感想：</b>
+                            <br> 工科创IIB是我选修的第一门工科创课程。这门课虽然被老师定义为入门课程，但我还是觉得这门课对于软件和硬件都有较高的要求。我负责的硬件部分主要是两方面。一方面是完成了对小车前进、后退、左右转向、停车功能的初步建立，并和一飞共同完成了对各项功能的改进和完善；另一方面我主要编写了蓝牙模块上位机和下位机通信部分的代码并和一飞共同完成了调试。在此之前我并没有使用过energia，也没有用过蓝牙模块，但是在询问有项目经验的同学以及资料查阅之后终于搞懂，搞懂之后进展很快。不过我们共同调试了很久，调试期间多次修改单片机控制部分的参数，最后终于达到了理想的效果。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
+                    <div class="faculty-div">
+                        <h3>冯一飞 </h3>
+                        <hr />
+                        <p>
+                            <b>负责部分：</b>
+                            <br /> 地图小车制作，单片机蓝牙代码调试，报告撰写
+                            <br>
+                            <br>
+                            <b>个人感想：</b>
+                            <br> 蓝牙小车走黑线是我做过的第一个小科创项目。这个项目对于软件和硬件、理论和实践、分工和合作都有要求，所以完成起来磕磕绊绊、殊为不易。我负责的硬件部分主要是两方面。一方面是对小车的外型进行改造，减少无关变量的误差，强化摄像头对于红绿两个圆形标志的识别精度。另一方面我主要与徐睿完成了对小车前进、后退、左右转向、停车功能的建立和完善，通过调整小车两个轮子的转速、延时、角度等使下位机与上位机协调工作。这次项目对于我来说硬件除了语言是c以外其他的都是陌生的，一开始毫无头绪，但在多方询问有项目经验的同学之后，进展很快，这里也多亏两位队友的帮助，后期的项目进展很快，最后项目完成的情况也十分理想。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s">
+                    <div class="faculty-div">
+                        <h3>瞿哲 </h3>
+                        <hr />
+                        <p>
+                            <b>负责部分：</b>
+                            <br /> OpenCV程序编写，网页制作，报告撰写
+                            <br>
+                            <br>
+                            <b>个人感想：</b>
+                            <br> 工科创IIB是我选修的第一门工科创课程，这是我第一次接触OpenCV, 所以一开始上手还是有些困难的。在编写程序时，网上丰富的OpenCV教程对我帮助很大，但是由于不同版本OpenCV的API差异较大，在写程序时还是要注意尽量使用新版本的API。图像识别的程序结构比较简单，但很多参数要后期调试才能确定，因此应该尽早开始调试。另外，图像识别程序还要与发送蓝牙指令的程序配合，因此我们在头文件中统一定义了函数接口，这大大提高了组员之间互相配合编写程序的效率。最后要感谢两位队友的帮助，没有大家互相配合这个项目很难做好。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FACULTY SECTION END-->
+    <div id="software" class="container set-pad">
+        <div class="row text-center">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">软件部分 </h1>
+                <p data-scroll-reveal="enter from the bottom after 0.3s">
+                    程序处理流程如下：
+                </p>
+            </div>
+        </div>
+        <!--/.HEADER LINE END-->
+        <div class="row set-row-pad">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2" data-scroll-reveal="enter from the bottom after 0.4s">
+                <p align="center">
+                    <img src="pics/software-pipeline.png" height="35%" width="35%" align="center" />
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2" data-scroll-reveal="enter from the bottom after 0.4s">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <b>透视变换：</b> 将摄像头读取到的图像转换为垂直俯视图，便于轨道标定与小车追踪</li>
+                <li class="list-group-item">
+                    <b>二值化：</b> 利用OpenCV的threshold函数，可以将图像二值化，这一步将轨道与背景分离开来，为轨道标定减小误差。</li>
+                <li class="list-group-item">
+                    <b>轨道标定：</b> 轨道标定是一个比较复杂的过程，首先用erode函数将轨道图像细化，然后用HoughLinesP函数识别地图中的线段。由于HoughLines函数可能会将同一轨道识别为多条直线，所以还要进行轨道线段的归类，确保不同直线代表不同轨道。随后通过计算各线段的交点，我们得到了一系列轨道拐点，即小车需要转弯的位置。</li>
+                <li class="list-group-item">
+                    <b>小车追踪：</b> 小车的识别主要依靠小车前后红色与绿色的圆形纸片，由于HSV色彩空间更加符合人类直觉，因此我们先将摄像头读到的图像从RGB色彩空间转换到了HSV色彩空间（通过cvtColor函数）. 此后利用inRange函数分别分离出图像中的红色与绿色部分，HoughCircles函数找到两个圆的位置，即小车车头与车尾的位置。在确定小车的位置后，根据小车与轨道的相对位置关系给小车发送蓝牙指令。由于此前已经确定了轨道拐点，小车的前进方式实际上就是按次序遍历拐点。我们对小车偏离轨道的处理方式是发送指令让小车调整方向，驶向最近的一个拐点。</li>
+                <li class="list-group-item">
+                    <b>发送蓝牙指令：</b> 首先将小车蓝牙与PC端蓝牙配对，随后用windows系统的CreateFile API打开串口，发送指令与接收指令分别通过WinAPI的WriteFile和ReadFile完成。发送蓝牙指令的程序需要增加对异常情况的处理，这有利于后期调试时对错误的定位。</li>
+            </ul>
+        </div>
+    </div>
+    <!-- COURSES SECTION END-->
+    <div id="hardware">
+        <div class="overlay">
+            <div class="container set-pad">
+                <div class="row text-center">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                        <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">硬件部分  </h1>
+                        <p data-scroll-reveal="enter from the bottom after 0.3s">
+                            在本次项目中，我们使用的是由实验室提供的小车。小车使用4节1.5V镍氢充电电池进行供电，且搭载Texas Instruments开发的MSP430单片机，由HC-07蓝牙模块接收输入指令。 小车的动力系统主要包括两个相互独立的后轮和一个前置的能够转向的舵机，前轮属于从动轮，不具有动力。
+                    </div>
+                </div>
+                <!--/.HEADER LINE END-->
+                <div class="row set-row-pad" data-scroll-reveal="enter from the bottom after 0.5s">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b>蓝牙模块 HC-07</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <img src="pics/ble.jpg" width="30%" />
+                                <p>该蓝牙模块可以直接接在小车上，接口是完全对应的，因此不需要外部飞线。接上并给小车供电后即可接收蓝牙指令。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b>单片机</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <img src="pics/chip.png" width="70%" />
+                                <p>
+                                    小车使用了 Texas Instruments 开发的 MSP430 单片机。通过 Energia 对其进行编程，使其能够辨别输入的指令并对小车做出相应调整。
+                                    <br> 通过设置小车左右电机的高低电平控制小车的各种动作(我们的小车前轮为万向轮，所以我们通过左右轮的不同速度来实现转弯)，设置占空比来控制前进后退速度或者转弯速度，设置delay时间控制前进后退或者转弯时间。 代码主要分为两个部分，一部分是对指令的接收，另一部分是对电机的控制。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTACT SECTION END-->
+    <div id="test-result">
+        <div class="overlay">
+            <div class="container set-pad">
+                <div class="row text-center">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                        <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">测试情况  </h1>
+                        <p data-scroll-reveal="enter from the bottom after 0.3s">
+                            经现场测试，我们的小车能够完成自动走黑线的任务，测试视频如下：
+                    </div>
+                </div>
+                <!--/.HEADER LINE END-->
+                <div class="jumbotron col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2" ">
+					<video width="100% "  controls>
+			  		<source src="pics/video.mp4 " type="video/mp4 ">
+					您的浏览器不支持 video 标签。
+					</video>
+					<br>
+					<br>
+					<table class="table ">
  
-		  
-		  
-		</div>
-			
-		   </div>
-			</div>
-	   </div>
-	   
-   </div>
-
-
-
-	 <div id="project-result" class="container set-pad" >
-		 <div class="row text-center">
-			 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-				 <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">项目成果 </h1>
-				 <p data-scroll-reveal="enter from the bottom after 0.3s" >
-				  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 </p>
-			 </div>
-
-		 </div>
-		 <!--/.HEADER LINE END-->
-
-
-	   <div class="row" >
-	   
-		   
-			 <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
-				 <div class="about-div">
-				 <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-			   <h3 >Quality Education</h3>
-			 <hr />
-				   <hr />
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-		   <a href="#" class="btn btn-info btn-set"  >ASK THE EXPERT</a>
-			</div>
-			   </div>
-			   <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
-				 <div class="about-div">
-				 <i class="fa fa-bolt fa-4x icon-round-border" ></i>
-			   <h3 >SYSTEMATIC APPROACH</h3>
-			 <hr />
-				   <hr />
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-		   <a href="#" class="btn btn-info btn-set"  >ASK THE EXPERT</a>
-			</div>
-			   </div>
-			 <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s">
-				 <div class="about-div">
-				 <i class="fa fa-magic fa-4x icon-round-border" ></i>
-			   <h3 >ONE TO ONE STUDY</h3>
-			 <hr />
-				   <hr />
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-		   <a href="#" class="btn btn-info btn-set"  >ASK THE EXPERT</a>
-			</div>
-			   </div>
-			 
-			 
-		   </div>
-		 </div>
-<!-- FEATURES SECTION END-->
-
-
-
-<div id="project-structure" >
-<div class="container set-pad">
-		 <div class="row text-center">
-			 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-				 <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">整体结构</h1>
-				 <p data-scroll-reveal="enter from the bottom after 0.3s">
-				  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 </p>
-			 </div>
-
-		 </div>
-		 <!--/.HEADER LINE END-->
-
-	   <div class="row" >
-	   
-		   
-			 <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
-				 <div class="faculty-div">
-				 <img src="assets/img/faculty/1.jpg"  class="img-rounded" />
-			   <h3 >ROXI CHI LUENA </h3>
-			 <hr />
-					 <h4>Desigining <br /> Department</h4>
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-			</div>
-			   </div>
-			 <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
-				 <div class="faculty-div">
-				 <img src="assets/img/faculty/2.jpg"  class="img-rounded" />
-			   <h3 >JANE DEO ALEX</h3>
-			 <hr />
-					 <h4>Enginering <br /> Department</h4>
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-			</div>
-			   </div>
-		   <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s">
-				 <div class="faculty-div">
-				 <img src="assets/img/faculty/3.jpg" class="img-rounded" />
-			   <h3 >RUBY DECORSA</h3>
-			 <hr />
-					 <h4>Management <br /> Department</h4>
-			   <p >
-				   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo . 
-				   
-			   </p>
-			</div>
-			   </div>
-			 
-		   </div>
-		 </div>
-	</div>
-<!-- FACULTY SECTION END-->
-
-
-
-  <div id="software" class="container set-pad">
-		 <div class="row text-center">
-			 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-				 <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">软件部分 </h1>
-				 <p data-scroll-reveal="enter from the bottom after 0.3s">
-				  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 </p>
-			 </div>
-
-		 </div>
-		 <!--/.HEADER LINE END-->
-
-
-	   <div class="row set-row-pad" >
-	   <div class="col-lg-6 col-md-6 col-sm-6 " data-scroll-reveal="enter from the bottom after 0.4s" >
-			 <img src="assets/img/building.jpg" class="img-thumbnail" />
-	   </div>
-		   <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
-			   <div class="panel-group" id="accordion">
-					<div class="panel panel-default" data-scroll-reveal="enter from the bottom after 0.5s">
-						<div class="panel-heading" >
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="collapsed">
-							  <strong>   350+</strong> DESIGNING COURSES 
-								</a>
-							</h4>
-						</div>
-						<div id="collapse1" class="panel-collapse collapse" style="height: 0px;">
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis egestas mauris ut vehicula. Cras viverra ac orci ac aliquam. Nulla eget condimentum mauris, eget tincidunt est.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default" data-scroll-reveal="enter from the bottom after 0.7s">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="collapsed">
-								  <strong>   250+</strong> ENGINEERING COURSES 
-								</a>
-							</h4>
-						</div>
-						<div id="collapse2" class="panel-collapse collapse" style="height: 0px;">
-							<div class="panel-body">
-								<p>
-								   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis egestas mauris ut vehicula. Cras viverra ac orci ac aliquam. Nulla eget condimentum mauris, eget tincidunt est.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default" data-scroll-reveal="enter from the bottom after 0.9s">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="collapsed">
-									<strong>   153+</strong> MANAGEMENT COURSES 
-								</a>
-							</h4>
-						</div>
-						<div id="collapse3" class="panel-collapse collapse"  style="height: 0px;">
-							<div class="panel-body">
-								<p>
-								   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis egestas mauris ut vehicula. Cras viverra ac orci ac aliquam. Nulla eget condimentum mauris, eget tincidunt est.
-								</p>
-							</div>
-						</div>
-					</div>
+					  <tr>
+					    <th>测试项</th>
+					    <th>测试情况</th>
+					  </tr>
+					  <tr>
+					    <td>小车能各方向自由运动？</td>
+					    <td>YES</span> </td>
+					  </tr>
+					  <tr>
+					    <td>小车可接受计算机指令？</td>
+					    <td>YES</td>
+					  </tr>
+					  <tr>
+					    <td>可实时采集小车图像？</td>
+					    <td>YES</td>
+					  </tr>
+					  <tr>
+					    <td>可标定跑道？</td>
+					    <td>YES</td>
+					  </tr>
+					  <tr>
+					    <td>可控制小车走黑线？</td>
+					    <td>YES</td>
+					  </tr>
+					  <tr>
+					    <td>能顺利走出跑道？</td>
+					    <td>YES</td>
+					  </tr>
+					  <tr>
+					    <td>跑道复杂度</td>
+					    <td>较复杂（存在岔路口）</td>
+					  </tr>
+					</table>
 				</div>
-			   <div class="alert alert-info" data-scroll-reveal="enter from the bottom after 1.1s" >
-				   <span style="font-size:40px;">
-					  <strong> 2500 + </strong> 
-					   <hr />
-					   Centers
-				   </span>
-			   </div>
-	   </div>
-		 
-			 
-			 
-		   </div>
-		 </div>
-  <!-- COURSES SECTION END-->
-<div id="hardware"   >
-	   <div class="overlay">
-<div class="container set-pad">
-  <div class="row text-center">
-			 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-				 <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line" >硬件部分  </h1>
-				 <p data-scroll-reveal="enter from the bottom after 0.3s">
-				  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					 </p>
-			 </div>
+			</div>
+		</div>
+</div> 
 
+
+
+<div id="appendix "   >
+	   <div class="overlay ">
+<div class="container set-pad ">
+  	<div class="row text-center ">
+		 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 ">
+			 <h1 data-scroll-reveal="enter from the bottom after 0.1s " class="header-line " >项目源代码  </h1>
+			 <p data-scroll-reveal="enter from the bottom after 0.3s ">
+			  <b>我们组使用 Git 进行项目代码管理，请访问
+			  <a href="https://github.com/llxxee/IIB_2017 "> Github 项目地址 </a> 查看项目源代码。</b>
+			  <br>
 		 </div>
+	</div>
 		 <!--/.HEADER LINE END-->
-	   <div class="row set-row-pad"  data-scroll-reveal="enter from the bottom after 0.5s" >
-	   
-		   
-			 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-				<form>
-					<div class="form-group">
-						<input type="text" class="form-control "  required="required" placeholder="Your Name" />
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control " required="required"  placeholder="Your Email" />
-					</div>
-					<div class="form-group">
-						<textarea name="message" required="required" class="form-control" style="min-height: 150px;" placeholder="Message"></textarea>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-info btn-block btn-lg">SUBMIT REQUEST</button>
-					</div>
+	 <div class="row set-row-pad "  data-scroll-reveal="enter from the bottom after 0.5s " >
+		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 ">
+		<h4> <b>代码下载</b> </h4>
+		<ul>
+			<li><a href="https://github.com/llxxee/IIB_2017 "> Github 项目地址 </a> </li>
+		</ul>
+		<br>
+		<h4> <b>代码结构</b> </h4>
+			<ul>
+			<li><code>main.cpp</code>: master</li>
+			<li><code>trackInit.h</code>,<code>trackInit.cpp</code>: generate the map and determine the turning positions</li>
+			<li><code>traceCar.h</code>,<code>traceCar.cpp</code>: recognize the position of the car</li>
+			<li><code>controlCar.h</code>,<code>controlCar.cpp</code>: send the bluetooth instruction according to the car position.</li>
+			<li><code>BLE_CAR.h</code>,<code>BLE_PORT.h</code>: support for bluetooth communication </li>
+			</ul>
+		</div>		
+	</div>
+	  
+	</div>
+</div> 
 
-				</form>
-			</div>
 
-			   
- 
-		  
-		  
-			
-		   </div>
-			</div>
-	  </div> 
-   </div>
-
-		
-			 
- <!-- CONTACT SECTION END-->
- 
-<div id="footer">
+<div id="footer ">
 	  2017 SJTU 工科创 IIB 05组
 </div>
  <!-- FOOTER SECTION END-->
@@ -369,16 +312,16 @@
 
 
 <!--  Jquery Core Script -->
-<script src="assets/js/jquery-1.10.2.js"></script>
+<script src="assets/js/jquery-1.10.2.js "></script>
 <!--  Core Bootstrap Script -->
-<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/bootstrap.js "></script>
 <!--  Flexslider Scripts --> 
-	 <script src="assets/js/jquery.flexslider.js"></script>
+	 <script src="assets/js/jquery.flexslider.js "></script>
  <!--  Scrolling Reveal Script -->
-<script src="assets/js/scrollReveal.js"></script>
+<script src="assets/js/scrollReveal.js "></script>
 <!--  Scroll Scripts --> 
-<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/js/jquery.easing.min.js "></script>
 <!--  Custom Scripts --> 
-	 <script src="assets/js/custom.js"></script>
+	 <script src="assets/js/custom.js "></script>
 </body>
 </html>
