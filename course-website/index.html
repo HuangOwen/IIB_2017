@@ -33,11 +33,12 @@
             </div>
             <div class="navbar-collapse collapse move-me">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home">项目概况</a></li>
+                    <li><a href="#structure">项目结构</a></li>
                     <!--  <li><a href="#project-result">项目成果</a></li> -->
                     <li><a href="#team-member">团队成员</a></li>
                     <li><a href="#software">软件部分</a></li>
                     <li><a href="#hardware">硬件部分</a></li>
+                    <li><a href="#improvement">问题与改进</a></li>
                     <li><a href="#test-result">测试情况</a></li>
                     <li><a href="#appendix">项目源代码</a></li>
                 </ul>
@@ -45,6 +46,9 @@
         </div>
     </div>
     <!--NAVBAR SECTION END-->
+     
+
+
     <div class="home-sec" id="home">
         <div class="overlay">
             <div class="container">
@@ -70,6 +74,47 @@
         </div>
     </div>
     <!-- FEATURES SECTION END-->
+
+    <div id="structure">
+        <div class="overlay ">
+            <div class="container set-pad ">
+                <div class="row text-center ">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 ">
+                        <h1 data-scroll-reveal="enter from the bottom after 0.1s " class="header-line ">项目结构</h1>
+                        本项目开发环境为 CodeBlocks + OpenCV2.4, 总体可分为硬件部分和软件部分。 项目整体结构如下图：
+                    </div>
+                </div>
+                <!--/.HEADER LINE END-->
+                <div class="row set-row-pad " data-scroll-reveal="enter from the bottom after 0.5s ">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 ">
+                        <div class="panel panel-default">
+                           
+                            <p align="center">
+                            <img src="pics/structure.jpg" width="86%" />
+                            </p>
+
+                        </div>
+
+                  
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="team-member">
         <div class="container set-pad">
             <div class="row text-center">
@@ -152,13 +197,26 @@
                 <li class="list-group-item">
                     <b>透视变换：</b> 将摄像头读取到的图像转换为垂直俯视图，便于轨道标定与小车追踪</li>
                 <li class="list-group-item">
-                    <b>二值化：</b> 利用OpenCV的threshold函数，可以将图像二值化，这一步将轨道与背景分离开来，为轨道标定减小误差。</li>
+                    <p><b>二值化：</b> 利用OpenCV的threshold函数，可以将图像二值化，这一步将轨道与背景分离开来，为轨道标定减小误差。下图为程序运行时地图二值化后的图像。</p>
+                    <p align="center">
+                        <img src="pics/binarized.jpg" width="50%" /></p>
+                </li>
                 <li class="list-group-item">
-                    <b>轨道标定：</b> 轨道标定是一个比较复杂的过程，首先用erode函数将轨道图像细化，然后用HoughLinesP函数识别地图中的线段。由于HoughLines函数可能会将同一轨道识别为多条直线，所以还要进行轨道线段的归类，确保不同直线代表不同轨道。随后通过计算各线段的交点，我们得到了一系列轨道拐点，即小车需要转弯的位置。</li>
+                    <p>
+                        <b>轨道标定：</b> 轨道标定是一个比较复杂的过程，首先用<code>erode</code>函数将轨道图像细化，然后用<code>HoughLinesP</code>函数识别地图中的线段。由于HoughLines函数可能会将同一轨道识别为多条直线，所以还要进行轨道线段的归类，确保不同直线代表不同轨道。随后通过计算各线段的交点，我们得到了一系列轨道拐点，即小车需要转弯的位置。下图为轨道标定的结果。</p>
+                    <p align="center">
+                        <img src="pics/final-track.jpg" width="50%" />
+                    </p>
+                </li>
                 <li class="list-group-item">
-                    <b>小车追踪：</b> 小车的识别主要依靠小车前后红色与绿色的圆形纸片，由于HSV色彩空间更加符合人类直觉，因此我们先将摄像头读到的图像从RGB色彩空间转换到了HSV色彩空间（通过cvtColor函数）. 此后利用inRange函数分别分离出图像中的红色与绿色部分，HoughCircles函数找到两个圆的位置，即小车车头与车尾的位置。在确定小车的位置后，根据小车与轨道的相对位置关系给小车发送蓝牙指令。由于此前已经确定了轨道拐点，小车的前进方式实际上就是按次序遍历拐点。我们对小车偏离轨道的处理方式是发送指令让小车调整方向，驶向最近的一个拐点。</li>
+                    <b>小车追踪：</b> 小车的识别主要依靠小车前后红色与绿色的圆形纸片，由于 HSV 色彩空间更加符合人类直觉，因此我们先将摄像头读到的图像从 RGB 色彩空间转换到了HSV色彩空间（通过<code>cvtColor</code>函数）. 此后利用inRange函数分别分离出图像中的红色与绿色部分，HoughCircles函数找到两个圆的位置，即小车车头与车尾的位置。在确定小车的位置后，根据小车与轨道的相对位置关系给小车发送蓝牙指令。由于此前已经确定了轨道拐点，小车的前进方式实际上就是按次序遍历拐点。我们对小车偏离轨道的处理方式是发送指令让小车调整方向，驶向最近的一个拐点。</li>
                 <li class="list-group-item">
-                    <b>发送蓝牙指令：</b> 首先将小车蓝牙与PC端蓝牙配对，随后用windows系统的CreateFile API打开串口，发送指令与接收指令分别通过WinAPI的WriteFile和ReadFile完成。发送蓝牙指令的程序需要增加对异常情况的处理，这有利于后期调试时对错误的定位。</li>
+                    <b>发送蓝牙指令：</b> 首先将小车蓝牙与PC端蓝牙配对，随后用 Windows 系统的<code>CreateFile</code> API打开串口，发送指令与接收指令分别通过 WinAPI 的 <code>WriteFile</code>和<code>ReadFile</code>完成。发送蓝牙指令的程序需要增加对异常情况的处理，这有利于后期调试时对错误的定位。</li>
+                <li class="list-group-item">
+                    <b>程序运行截图：</b> 
+                    <p>
+                     <img src="pics/all.jpg" width="100%" />
+                    </p></li>
             </ul>
         </div>
     </div>
@@ -188,10 +246,22 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><b>单片机</b></h3>
+                                <h3 class="panel-title"><b>小车控制</b></h3>
                             </div>
                             <div class="panel-body">
-                                <img src="pics/chip.png" width="70%" />
+                            	<p align="center"> <b>小车外观：</b>
+                                    <br>
+                                    <img src="pics/out.jpg" width="70%" />
+                                </p>
+                                <p align="center"> <b>MSP430 单片机：</b>
+                                    <br>
+                                    <img src="pics/chip.png" width="70%" />
+                                </p>
+                                <p align="center">
+                                    <b>小车电路图：</b>
+                                    <br>
+                                    <img src="pics/car.jpg" width="100%" />
+                                </p>
                                 <p>
                                     小车使用了 Texas Instruments 开发的 MSP430 单片机。通过 Energia 对其进行编程，使其能够辨别输入的指令并对小车做出相应调整。
                                     <br> 通过设置小车左右电机的高低电平控制小车的各种动作(我们的小车前轮为万向轮，所以我们通过左右轮的不同速度来实现转弯)，设置占空比来控制前进后退速度或者转弯速度，设置delay时间控制前进后退或者转弯时间。 代码主要分为两个部分，一部分是对指令的接收，另一部分是对电机的控制。
@@ -204,6 +274,58 @@
         </div>
     </div>
     <!-- CONTACT SECTION END-->
+    <div id="improvement">
+        <div class="overlay ">
+            <div class="container set-pad ">
+                <div class="row text-center ">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 ">
+                        <h1 data-scroll-reveal="enter from the bottom after 0.1s " class="header-line ">问题与改进</h1>
+                    </div>
+                </div>
+                <!--/.HEADER LINE END-->
+                <div class="row set-row-pad " data-scroll-reveal="enter from the bottom after 0.5s ">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 ">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>蓝牙连接问题</b></div>
+                            <div class="panel-body">
+                                蓝牙模块是硬件部分中最麻烦的一个环节。蓝牙模块、串口调试工具、指令发送代码、单片机、小车任何一个环节出现问题，都会导致蓝牙发送接收指令失败，很多时候很容易把硬件问题当成软件问题，一遍遍的检查代码。所以后来，我们采用全蓝牙自己给自己发指令的方式，先确保蓝牙串口是正常的，然后再解决小车不能正常运动的代码问题。很多时候是由于电源，接触不良等硬件问题导致的。
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>小车运动不稳定问题</b></div>
+                            <div class="panel-body">
+                                可以控制的参数是左右两轮转速，高低电平状态，单次运动时间。对于小车转弯，由于我们的小车没有舵机，所以不能对角度进行控制。所以我们先采用一个轮子转，一个轮子不转的方法；后来发现小车转向不均匀而且会有很大的打滑，所以我们改为一个轮子正转，一个轮子反转的方法。同时，在与上位机配合的过程中发现小车一直运动会导致上位机多次发送指令时有的指令失效，所以我们设置了一个变量控制小车运动的时间，超过该时间后会调用停车的函数。同时，我们适当的降低了速度，使小车更便于控制。
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>环境光线问题</b></div>
+                            <div class="panel-body">
+                                我们的程序在大多数情况下能够很好地识别地图和追踪小车，但在光线较暗地情况下有时无法稳定地识别小车上绿色的圆形纸片，进而错误地判断小车的位置。为了解决这个问题，我们对 <code>HoughCircle</code> 函数的参数进行了调整，使程序只识别与纸片大小相近的圆形，同时将给小车加装了白色外壳，减小车轮等部位对图像识别的干扰。
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>小车转弯角度问题</b></div>
+                            <div class="panel-body">
+                                小车转弯时容易发生转弯角度过大的问题，为了解决这个问题，我们减小了小车单次转弯的角度，增加了发送蓝牙指令的频率，这样可以增加对小车位置的判断频率，避免小车在转到合适角度后仍然转弯。
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>地图标定问题</b></div>
+                            <div class="panel-body">
+                                在我们最初版本的程序中，图像二值化后我们用 <code>Canny</code> 函数进行了取边缘操作，这导致 <code>HoughLine</code> 函数识别直线有时会漏掉几段轨道，通过用 <code>erode</code> 函数代替 <code>canny</code> 函数，我们在轨道细化之后的图像上进行直线识别，大大提高了准确率。
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="test-result">
         <div class="overlay">
             <div class="container set-pad">
@@ -222,7 +344,7 @@
 					</video>
 					<br>
 					<br>
-					<table class="table ">
+					<table class="table">
  
 					  <tr>
 					    <th>测试项</th>
@@ -264,7 +386,7 @@
 
 
 
-<div id="appendix "   >
+<div id="appendix"   >
 	   <div class="overlay ">
 <div class="container set-pad ">
   	<div class="row text-center ">
@@ -291,15 +413,30 @@
 			<li><code>traceCar.h</code>,<code>traceCar.cpp</code>: recognize the position of the car</li>
 			<li><code>controlCar.h</code>,<code>controlCar.cpp</code>: send the bluetooth instruction according to the car position.</li>
 			<li><code>BLE_CAR.h</code>,<code>BLE_PORT.h</code>: support for bluetooth communication </li>
+			<li><code>board.ino</code>: the code on  MSP430 board  </li>
+			
 			</ul>
+			<br>
+		<h4> <b>使用方法</b> </h4>
+		<ol>
+			<li>PC 端打开蓝牙，与小车蓝牙进行配对（默认密码1234）</li>
+			<li>在<code>BLE_CAR.h</code>中修改打开的串口为蓝牙串口</li>
+			<li>安装并配置 OpenCV </li>
+			<li>在 CodeBlocks 中打开 RUN.cbp 工程文件</li>
+			<li>Build and run</li>
+			<li>按控制台提示进行操作</li>
+		</ol>
+		<br>
 		</div>		
 	</div>
 	  
 	</div>
 </div> 
+</div>
 
 
-<div id="footer ">
+
+<div id="footer">
 	  2017 SJTU 工科创 IIB 05组
 </div>
  <!-- FOOTER SECTION END-->
