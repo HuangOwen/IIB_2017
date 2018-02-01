@@ -1,8 +1,7 @@
 # IIB_2017
 
 ## Dependency
-1. CodeBlocks
-2. OpenCV 2.4
+OpenCV 2.4
 
 
 
